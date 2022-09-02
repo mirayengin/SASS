@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+//***********************/
+//***** Variable Usage ***/
+//*********************/
+
+$fontSize:1.2rem;
+$fontColor:white;
+$fontFamily: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$navBgColor: #30a7c3;
+$bannerBgColor: hotpink;
+$myBorder: 2px solid brown;
+
+body {
+    font-family: $fontFamily;
+    background-color: $bannerBgColor;
+    font-size: $fontSize;
+    color: $fontColor;
+}
+
+//***** HEADER ********//
+
+header {
+    background-color: $navBgColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+
+    img {
+        width: 80px;
+        border:$myBorder;
+        border-radius: 10px;
+    }
+
+    ul {
+        list-style: none;
+        li {
+            display: inline-block;
+            padding: 0.5rem;
+        &hover {
+            text-decoration: underline;
+            //! içinde bulundğumuz elementi refere etmek için & işareti kullanılır.
+        }
+        }
+    }
+
+    a {
+        color: $fontColor;
+        text-decoration: none;
+    
+    }
+}
+
+
+//***** BANNER ********//
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    line-height: 2rem; //*? Satır aralıklarını ayarlıyoruz. */
+    align-items: center;
+    aside {
+        button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: $navBgColor;
+            margin-top: 1rem;
+            margin-right: 0.8rem;
+            &hover {
+                background-color: pink;
+                cursor: pointer;
+            }
+        }
+    }
+
+    img {
+        width: 30%;
+        max-width: 400px;
+        min-width: 250px;
+    }
+}
+
+
+//***** CARDS ********//
+
+//! @MİXİN */
+
+@mixin mybox ($backColor, $fcolor) {
+    background-color: $backColor;
+    color: $fcolor;
+    width: 25%;
+    height: 15rem;
+    border: $myBorder;
+    border-radius: 5px;
+    
+}
+
+
+.cards {
+    display: flex;
+    column-gap: 0.5rem;
+    padding: 0.8rem;
+    .cards1 {
+        @include mybox(green,white );
+    }
+    .cards2 {
+        @include mybox(brown,white );
+    }
+    .cards3 {
+        @include mybox(yellow,white );
+    }
+    .cards4 {
+        @include mybox(rgb(40,35,70),white );
+    }
+}
+
+
+//********** ARTICLES *****//
+
+//! @EXTEND */
+
+.articles {
+    display: flex;
+    padding: 1rem;
+    column-gap: 1rem;
+    .article1 {
+        background-color: grey;
+        width: 50%;
+        border: 1px solid black;
+        border-radius: 10px;
+        height: 10rem;
+        // margin-right: 1rem;
+    }
+
+    .article2 {
+        @extend .article1; //? Article1 deki bütün style lar buraya geldi */
+        background-color: hotpink;
+        border-color: green;
+    
+    }
+}
+
+
+//*******  FOOTER *********/
+
+//*************************
+//! FOR LOOP
+//*************************
+
+//***********************************************
+//! IF-ELSE
+//************************************************
+
+footer {
+    $dark: 2;
+  
+    p {
+      @if $dark==1 {
+        background-color: grey;
+      } @else if $dark==2 {
+        background-color: lightgreen;
+      } @else {
+        background-color: lightsalmon;
+      }
+    }
+  
+    .social-icons {
+      display: flex;
+      height: 10rem;
+      $textColor: #990000, #55004e, #0fa8a1, #121456, #64c217;
+      
+      @for $i from 1 through 5 {
+        .social#{$i} {
+          width: 20%;
+          background-color: lighten(rgba(27, 130, 219, 0.89), $i * 5);
+          font-size: $i * 1rem;
+          color: nth($textColor, $i);
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
